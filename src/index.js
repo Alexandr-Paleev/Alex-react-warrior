@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 
 const movie = {
   title: "Avengers: Infinity War",
@@ -11,7 +12,7 @@ const movie = {
 function Image(props) {
   // console.log(props)
   return (
-    <img src={props.src} alt={props.alt} />
+    <img style={{width: "100%"}} src={props.src} alt={props.alt} />
   )
 }
 
@@ -29,15 +30,48 @@ function Image(props) {
   
 // MovieItem = new React.Component()
 class MovieItem extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      show: false,
+      like: false
+    };
+  }
+
+  toggleOverview = () => {
+    this.setState({
+      show: !this.state.show
+    });
+  }
+
+  handleLike = () => {
+    this.setState({
+      like: !this.state.like
+    });
+  }
+
   render() {
-    const {data: {title, voteAverage, image}} = this.props;
-    console.log(this)
+    const {data: {title, voteAverage, image, overview}} = this.props;
+    console.log(this.state.show, this.state.like)
     return (
-      <div>
+      <div style={{width: "300px"}}>
         <Image src={image} alt={title} />
         <p>{title}</p>
         <p>{voteAverage.toFixed(1)}</p>
-    </div>
+        <div style={{display: "flex", justifyContent: "space-between"}} >
+          <button type="button" onClick={this.toggleOverview}>
+            {this.state.show ? "hide": "show"}
+          </button>
+          <button 
+            type="button" 
+            onClick={this.handleLike}
+            className={this.state.like ? "btn--like" : ""}
+          >
+            Like
+          </button>
+        </div>
+        {this.state.show ? <p>{overview}</p>: null}
+      </div>
     )
   }
 }

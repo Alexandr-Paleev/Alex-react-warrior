@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { moviesData } from '../moviesData';
 import MovieItem from './MovieItem';
 
 // UI = fn(state, props)
 
 
-class App extends React.Component {
+class App extends Component {
     constructor() {
         super();
         
@@ -21,10 +21,10 @@ class App extends React.Component {
         const updateMovie = this.state.movies.filter(function(item) {
             return item.id !== movie.id;
         });
-        console.log(updateMovie);
         this.setState({
             movies: updateMovie
         });
+        this.removeMovieFromWillWatch(movie);
     }
 
     addMovieToWillWatch = movie => {
@@ -36,6 +36,15 @@ class App extends React.Component {
         this.setState({
             moviesWillWatch: updateMoviesWillWatch
         })
+    }
+
+    removeMovieFromWillWatch = movie => {
+        const updateMoviesWillWatch = this.state.moviesWillWatch.filter(function(item) {
+            return item.id !== movie.id;
+        });
+        this.setState({
+            moviesWillWatch: updateMoviesWillWatch
+        });
     }
 
     render() {
@@ -52,6 +61,7 @@ class App extends React.Component {
                                             movie={movie} 
                                             removeMovie={this.removeMovie} 
                                             addMovieToWillWatch={this.addMovieToWillWatch} 
+                                            removeMovieFromWillWatch={this.removeMovieFromWillWatch}
                                         />
                                     </div>
                                 )

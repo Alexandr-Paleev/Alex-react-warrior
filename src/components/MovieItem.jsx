@@ -9,13 +9,6 @@ class MovieItem extends React.Component {
         }
     }
 
-    // toggleWillWatch = () => {
-    //     this.setState({
-    //         willWatch: !thisState
-    //     });
-    //     thisState ? removeMovieFromWillWatch(movie) : addMovieToWillWatch(movie);
-    // }
-
     render() {
         const {movie, removeMovie, addMovieToWillWatch, removeMovieFromWillWatch} = this.props;
         const thisState = this.state.willWatch;

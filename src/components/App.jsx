@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { moviesData } from '../moviesData';
 import MovieItem from './MovieItem';
+import MovieListWillWatch from './MovieListWillWatch';
 
 // UI = fn(state, props)
 
@@ -28,7 +29,6 @@ class App extends Component {
     }
 
     addMovieToWillWatch = movie => {
-        console.log(movie);
         // const updateMoviesWillWatch = this.state.moviesWillWatch.slice();
         // updateMoviesWillWatch.push(movie);
         
@@ -69,7 +69,16 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="col-3">
-                        <p>Will Watch: {this.state.moviesWillWatch.length}</p>
+                        <h4>Will Watch: {this.state.moviesWillWatch.length} movies</h4>
+                        {this.state.moviesWillWatch.map(movie => {
+                            return (
+                                <div key={movie.id}>
+                                    <MovieListWillWatch 
+                                        list={movie}                                         
+                                    />
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

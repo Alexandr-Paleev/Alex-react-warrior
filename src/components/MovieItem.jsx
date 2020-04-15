@@ -35,7 +35,7 @@ class MovieItem extends React.Component {
                             thisState ? removeMovieFromWillWatch(movie) : addMovieToWillWatch(movie);
                         }}
                     >
-                        {thisState ? 'Remove Will Watch' : 'Add Will Watch'}
+                        Will Watch
                     </button>
                 
                 </div>

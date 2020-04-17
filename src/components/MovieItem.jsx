@@ -19,7 +19,7 @@ class MovieItem extends React.Component {
                 className="card-img-top"
                 src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path ||
                 movie.poster_path}`}
-                alt="lalala"
+                alt="no for this movie"
             />
             <div className="card-body">
                 <h6 className="card-title">{movie.title}</h6>

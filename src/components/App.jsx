@@ -4,6 +4,7 @@ import MovieItem from './MovieItem';
 import MovieListWillWatch from './MovieListWillWatch';
 import { API_URL, API_KEY_3 } from '../utils/api';
 import MovieTabs from './MovieTabs';
+import Pagination from './Pagination';
 
 // UI = fn(state, props)
 
@@ -15,7 +16,9 @@ class App extends Component {
         this.state = {
             movies: [],
             moviesWillWatch: [],
-            sort_by: "popularity.desc"
+            sort_by: "popularity.desc",
+            currentPage: 1,
+            total_pages: null
         };
 
         // this.removeMovie = this.removeMovie.bind(this);
@@ -26,7 +29,7 @@ class App extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.sort_by !== this.state.sort_by) {
+        if (prevState.sort_by !== this.state.sort_by || prevState.currentPage !== this.state.currentPage) {
             this.getMovies();
         }
     }
@@ -44,7 +47,11 @@ class App extends Component {
         // const updateMoviesWillWatch = this.state.moviesWillWatch.slice();
         // updateMoviesWillWatch.push(movie);
         
-        const updateMoviesWillWatch = [...this.state.moviesWillWatch, movie];
+        let updateMoviesWillWatch = [...this.state.moviesWillWatch];
+        updateMoviesWillWatch = updateMoviesWillWatch.filter(item => {
+            return item.id !== movie.id;
+        });
+        updateMoviesWillWatch = [...updateMoviesWillWatch, movie];
         this.setState({
             moviesWillWatch: updateMoviesWillWatch
         })
@@ -60,12 +67,13 @@ class App extends Component {
     }
 
     getMovies = () => {
-        fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}`)
+        fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}&page=${this.state.currentPage}`)
           .then(response => {
               return response.json();
           }).then(data => {
               this.setState({
-                  movies: data.results
+                  movies: data.results,
+                  total_pages: data.total_pages
               })
           })
     }
@@ -76,17 +84,45 @@ class App extends Component {
         })
     }
 
+    updateCurrentPageNext = value => {
+        this.setState({
+            currentPage: ++value
+        });
+    }
+
+    updateCurrentPagePrevious = (value) => {
+        // value = value ? value : 1;
+        if (value > 1) {
+            value = value;
+        } else if (value = 1) {
+            value = 2;
+        }
+        this.setState({
+            currentPage: --value
+        });
+    }
+
     render() {
-        // console.log(this)
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-9">
-                        <div className="row mb-4">
+                        <div className="row mb-4 mt-4">
                             <div className="col-12">
                                 <MovieTabs 
                                     sort_by={this.state.sort_by}
                                     updateSortBy={this.updateSortBy}
+                                />
+                            </div>
+                        </div>
+                        <div className="row mb-4 mt-4">
+                            <div className="col-12" key={this.state.currentPage}>
+                                <Pagination 
+                                    total={this.state.total_pages}
+                                    currentPage={this.state.currentPage}
+                                    updateCurrentPageNext={this.updateCurrentPageNext}
+                                    updateCurrentPagePrevious={this.updateCurrentPagePrevious}
+                                    getNewPageMovies={this.getMovies}
                                 />
                             </div>
                         </div>
@@ -104,8 +140,19 @@ class App extends Component {
                                 )
                             })}
                         </div>
+                        <div className="row mb-4 mt-4">
+                            <div className="col-12" key={this.state.currentPage}>
+                                <Pagination 
+                                    total={this.state.total_pages}
+                                    currentPage={this.state.currentPage}
+                                    updateCurrentPageNext={this.updateCurrentPageNext}
+                                    updateCurrentPagePrevious={this.updateCurrentPagePrevious}
+                                    getNewPageMovies={this.getMovies}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-3">
+                    <div className="col-3 mt-4">
                         <h4>Will Watch: {this.state.moviesWillWatch.length} movies</h4>
                         {this.state.moviesWillWatch.map(movie => {
                             return (

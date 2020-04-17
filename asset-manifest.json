@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Alex-react-warrior/static/css/main.8f77a8e1.chunk.css",
+    "main.js": "/Alex-react-warrior/static/js/main.ae86a370.chunk.js",
+    "main.js.map": "/Alex-react-warrior/static/js/main.ae86a370.chunk.js.map",
+    "runtime-main.js": "/Alex-react-warrior/static/js/runtime-main.93e8a104.js",
+    "runtime-main.js.map": "/Alex-react-warrior/static/js/runtime-main.93e8a104.js.map",
+    "static/css/2.7bf17230.chunk.css": "/Alex-react-warrior/static/css/2.7bf17230.chunk.css",
+    "static/js/2.3a1f2e63.chunk.js": "/Alex-react-warrior/static/js/2.3a1f2e63.chunk.js",
+    "static/js/2.3a1f2e63.chunk.js.map": "/Alex-react-warrior/static/js/2.3a1f2e63.chunk.js.map",
+    "index.html": "/Alex-react-warrior/index.html",
+    "precache-manifest.202a19af5e003404816a47892c8fcdfe.js": "/Alex-react-warrior/precache-manifest.202a19af5e003404816a47892c8fcdfe.js",
+    "service-worker.js": "/Alex-react-warrior/service-worker.js",
+    "static/css/2.7bf17230.chunk.css.map": "/Alex-react-warrior/static/css/2.7bf17230.chunk.css.map",
+    "static/css/main.8f77a8e1.chunk.css.map": "/Alex-react-warrior/static/css/main.8f77a8e1.chunk.css.map",
+    "static/js/2.3a1f2e63.chunk.js.LICENSE.txt": "/Alex-react-warrior/static/js/2.3a1f2e63.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.93e8a104.js",
+    "static/css/2.7bf17230.chunk.css",
+    "static/js/2.3a1f2e63.chunk.js",
+    "static/css/main.8f77a8e1.chunk.css",
+    "static/js/main.ae86a370.chunk.js"
+  ]
+}

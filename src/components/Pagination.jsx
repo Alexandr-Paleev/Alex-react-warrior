@@ -10,13 +10,11 @@ export default class Pagination extends Component {
             updateCurrentPagePrevious, 
         } = this.props;
 
-        // console.log(currentPage);
-
         return (
             <ul className="tabs nav nav-pills d-flex justify-content-between">
                 <li className="nav-item">
                     <div 
-                        className={cn("nav-link", {active: true})}
+                        className="nav-link active"
                         onClick={() => updateCurrentPagePrevious(currentPage)}
                     >
                         Previous
@@ -29,7 +27,7 @@ export default class Pagination extends Component {
                 </li>
                 <li className="nav-item">
                     <div 
-                        className={cn("nav-link", {active: true})}
+                        className="nav-link active"
                         onClick={() => updateCurrentPageNext(currentPage)}
                     >
                         Next

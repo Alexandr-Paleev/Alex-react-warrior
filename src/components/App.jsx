@@ -91,7 +91,7 @@ class App extends Component {
     }
 
     updateCurrentPagePrevious = (value) => {
-        // value = value ? value : 1;
+        // value ? value : 1;
         if (value > 1) {
             value = value;
         } else if (value = 1) {
@@ -116,13 +116,12 @@ class App extends Component {
                             </div>
                         </div>
                         <div className="row mb-4 mt-4">
-                            <div className="col-12" key={this.state.currentPage}>
+                            <div className="col-12">
                                 <Pagination 
                                     total={this.state.total_pages}
                                     currentPage={this.state.currentPage}
                                     updateCurrentPageNext={this.updateCurrentPageNext}
                                     updateCurrentPagePrevious={this.updateCurrentPagePrevious}
-                                    getNewPageMovies={this.getMovies}
                                 />
                             </div>
                         </div>
@@ -153,16 +152,9 @@ class App extends Component {
                         </div>
                     </div>
                     <div className="col-3 mt-4">
-                        <h4>Will Watch: {this.state.moviesWillWatch.length} movies</h4>
-                        {this.state.moviesWillWatch.map(movie => {
-                            return (
-                                <div key={movie.id}>
-                                    <MovieListWillWatch 
-                                        list={movie}                                         
-                                    />
-                                </div>
-                            )
-                        })}
+                        <MovieListWillWatch 
+                            movies={this.state.moviesWillWatch} 
+                        />
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ class MovieItem extends React.Component {
 
     render() {
         const {movie, removeMovie, addMovieToWillWatch, removeMovieFromWillWatch} = this.props;
-        const thisState = this.state.willWatch;
+        const {willWatch} = this.state;
 
         return (
             <div className="card">
@@ -27,12 +27,12 @@ class MovieItem extends React.Component {
                 <p className="mb-0">Rating: {movie.vote_average}</p>
                     <button
                         type="button"
-                        className={thisState ? "btn btn-success" : "btn btn-secondary"}
+                        className={willWatch ? "btn btn-success" : "btn btn-secondary"}
                         onClick={() => {
                             this.setState({
-                                willWatch: !thisState
+                                willWatch: !willWatch
                             });
-                            thisState ? removeMovieFromWillWatch(movie) : addMovieToWillWatch(movie);
+                            willWatch ? removeMovieFromWillWatch(movie) : addMovieToWillWatch(movie);
                         }}
                     >
                         Will Watch
